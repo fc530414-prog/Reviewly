@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fondo_morado"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="15dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layoutContenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:background="@drawable/fondo_targeta"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/TvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inició de sesión"
+                android:textSize="36dp"
+                android:gravity="center"
+                android:fontFamily="@font/permanent_marker"
+                android:textColor="#000000"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"/>
+            <EditText
+                android:id="@+id/etCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/fondo_edit_text"
+                android:hint="Correo"
+                android:fontFamily="@font/shortstack_regular"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/baseline_mail_outline_24"
+                android:drawablePadding="10dp"/>
+
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/fondo_edit_text"
+                android:hint="Contraseña"
+                android:fontFamily="@font/shortstack_regular"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:drawableStart="@drawable/password_2_24dp_150228_fill0_wght400_grad0_opsz24"
+                android:inputType="textPassword"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/BtnIngresar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Ingresar"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:fontFamily="@font/permanent_marker"
+                android:background="@drawable/boton"
+                android:letterSpacing="0.10"
+                android:layout_marginTop="25dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvcrearcuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:textColor="#000000"
+                android:fontFamily="@font/shortstack_regular"
+                android:text="Crear una cuenta"
+                android:textSize="15sp"
+                android:layout_marginTop="15sp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
