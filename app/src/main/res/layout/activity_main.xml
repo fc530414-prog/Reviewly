@@ -42,7 +42,7 @@
                 android:id="@+id/TvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inicio de Secióin"
+                android:text="Inicio de Seción"
                 android:textSize="36dp"
                 android:gravity="center"
                 android:fontFamily="@font/permanent_marker"
@@ -82,16 +82,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/BtnIngresar"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Ingresar"
                 android:textSize="20sp"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
                 android:fontFamily="@font/permanent_marker"
                 android:background="@drawable/boton"
-                android:letterSpacing="0.10"
+                android:letterSpacing="0.15"
                 android:layout_marginTop="25dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
                 android:textStyle="bold"/>
 
             <TextView
