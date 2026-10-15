@@ -33,8 +33,8 @@ class Activity_Registro : AppCompatActivity() {
 
         val tviniciarsesion = findViewById<TextView>(R.id.tvcrearcuenta)
         tviniciarsesion.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent) }
+            finish()
+        }
 
         //iniciarlizar los objetos del los compontentes
         etnombre = findViewById(R.id.etNombre)

@@ -79,10 +79,18 @@ class Databasehelper(context: Context) : SQLiteOpenHelper(
 
         //regresar el valor obtenido de la insecion si es verdadero o es falso
         return resultado != -1L
-
-
-
     }
 
-
+    //metodo para validar inicio de sesion
+    fun validarUsuario(correo: String, password: String): Boolean {
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM $TABLE_USUARIOS WHERE $COL_CORREO = ? AND $COL_CONTRASEÑA = ?",
+            arrayOf(correo, password)
+        )
+        val existe = cursor.count > 0
+        cursor.close()
+        db.close()
+        return existe
+    }
 }
