@@ -1,6 +1,6 @@
-
 package com.example.reviewly
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -43,10 +43,10 @@ class HomeActivity : AppCompatActivity() {
         contenedorMusica = findViewById(R.id.contenedorMusica)
 
         // Consultas independientes para cada sección
-        obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", "ebook")
-        obtenerAlbum("greys anatomy", contenedorSeries, "tvShow", "tvSeason")
-        obtenerAlbum("Interstellar", contenedorPeliculas, "all", "all")
-        obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", "software")
+        obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", null)
+        obtenerAlbum("greys anatomy", contenedorSeries, "tvShow", null)
+        obtenerAlbum("Toy Story", contenedorPeliculas, "movie", null)
+        obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", null)
         obtenerAlbum("YOASOBI", contenedorMusica, "music", "album")
     }
 
@@ -55,8 +55,7 @@ class HomeActivity : AppCompatActivity() {
         termino: String,
         contenedor: LinearLayout,
         tipoMedia: String = "music",
-        tipoEntidad: String = "album"
-
+        tipoEntidad: String? = null
     ) {
         RetrofitClient.api.obtenerSimilares(
             query = termino,
@@ -70,7 +69,7 @@ class HomeActivity : AppCompatActivity() {
                 response: Response<MediaResponse>
             ) {
                 if (!response.isSuccessful) {
-                    mostrarError("Error  ${response.code()}")
+                    mostrarError("Error ${response.code()}")
                     return
                 }
 
@@ -130,6 +129,20 @@ class HomeActivity : AppCompatActivity() {
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .error(android.R.drawable.ic_menu_report_image)
                 .into(imgPortada)
+
+            // Evento click para abrir el detalle
+            vistaAlbum.setOnClickListener {
+                val intent = Intent(this@HomeActivity, detaActivity::class.java).apply {
+                    putExtra("ID_ALBUM", album.trackId ?: album.collectionId ?: 0L)
+                    putExtra("NOMBRE_ALBUM", album.obtenerTitulo())
+                    putExtra("ARTISTA_ALBUM", album.obtenerCreador())
+                    putExtra("GENERO_ALBUM", album.primaryGenreName ?: "NINGUNO")
+                    putExtra("CANCIONES_ALBUM", album.trackCount ?: 1)
+                    putExtra("IMAGEN_ALBUM", album.obtenerImagenGrande())
+                    putExtra("DESCRIPCION_ALBUM", album.obtenerDescripcion())
+                }
+                startActivity(intent)
+            }
 
             // Añadir la tarjeta a su sección horizontal
             contenedor.addView(vistaAlbum)
