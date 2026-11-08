@@ -10,7 +10,8 @@ interface MediaApi {
     @GET("search")
     fun obtenerSimilares(
         @Query("term") query: String,
-        @Query("media") type: String = "all",
+        @Query("country") country: String = "US",
+        @Query("media") type: String = "movie",
         @Query("entity") entidad: String? = null,
         @Query("limit") limite: Int = 10
     ): Call<MediaResponse>

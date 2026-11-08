@@ -24,7 +24,8 @@ data class MediaItem(
     @SerializedName("longDescription") val longDescription: String?,
 
     // Imagen
-    @SerializedName("artworkUrl100") val artworkUrl100: String?
+    @SerializedName("artworkUrl100") val artworkUrl100: String?,
+    @SerializedName("artworkUrl60") val artworkUrl60: String?
 ) {
     // Retorna el título correcto dependiendo de lo que responda la API
     fun obtenerTitulo(): String {
@@ -43,6 +44,9 @@ data class MediaItem(
 
     // Reemplaza el tamaño de la imagen por una de mejor calidad
     fun obtenerImagenGrande(): String? {
-        return artworkUrl100?.replace("100x100bb.jpg", "500x500bb.jpg")
+        val url = artworkUrl100 ?: artworkUrl60
+        return url?.replace("100x100bb.jpg", "500x500bb.jpg")
+            ?.replace("100x100.jpg", "500x500.jpg")
+            ?.replace("60x60bb.jpg", "500x500bb.jpg")
     }
 }

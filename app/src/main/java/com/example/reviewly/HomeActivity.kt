@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
         // Consultas independientes para cada sección
         obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", null)
         obtenerAlbum("greys anatomy", contenedorSeries, "tvShow", null)
-        obtenerAlbum("Toy Story", contenedorPeliculas, "movie", null)
+        obtenerAlbum("Coco", contenedorPeliculas, "movie", null)
         obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", null)
         obtenerAlbum("YOASOBI", contenedorMusica, "music", "album")
     }
