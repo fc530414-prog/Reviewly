@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +8,16 @@
     android:layout_height="match_parent"
     android:background="#7D004E"
     tools:context=".HomeActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fondo_morado"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
         android:layout_width="0dp"
@@ -28,166 +38,262 @@
             android:paddingBottom="20dp">
 
             <!-- Estado de carga -->
-
             <TextView
                 android:id="@+id/tvresultado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="Cargando contenido..."
+                android:fontFamily="@font/permanent_marker"
+                android:letterSpacing="0.10"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
-            <!-- 1. LIBROS -->
-
-            <TextView
-                android:id="@+id/tvGeneroLibros"
+            <!-- 1. TARJETA GRANDE DE CRISTAL: LIBROS -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="Libros"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="25dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/contenedorLibros"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
-            </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/tvGeneroLibros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="Libros"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            <!-- 2. SERIES -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/tvGeneroSeries"
+                        <LinearLayout
+                            android:id="@+id/contenedorLibros"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 2. TARJETA GRANDE DE CRISTAL: SERIES -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="Series"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="25dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/contenedorSeries"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
-            </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/tvGeneroSeries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="Series"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            <!-- 3. PELÍCULAS -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/tvGeneroPeliculas"
+                        <LinearLayout
+                            android:id="@+id/contenedorSeries"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 3. TARJETA GRANDE DE CRISTAL: PELÍCULAS -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="Películas"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="25dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/contenedorPeliculas"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
-            </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/tvGeneroPeliculas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="Películas"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            <!-- 4. VIDEOJUEGOS -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/tvGeneroVideojuegos"
+                        <LinearLayout
+                            android:id="@+id/contenedorPeliculas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 4. TARJETA GRANDE DE CRISTAL: VIDEOJUEGOS -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="Videojuegos"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="25dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/contenedorVideojuegos"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
-            </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/tvGeneroVideojuegos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="Videojuegos"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            <!-- 5. MÚSICA -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/tvGeneroMusica"
+                        <LinearLayout
+                            android:id="@+id/contenedorVideojuegos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 5. TARJETA GRANDE DE CRISTAL: MÚSICA -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="Música"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="25dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/contenedorMusica"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
-            </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/tvGeneroMusica"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="Música"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/contenedorMusica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

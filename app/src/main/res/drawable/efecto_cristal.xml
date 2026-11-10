@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Color de fondo translúcido (blanco con baja opacidad para que se filtre el fondo morado) -->
+    <solid android:color="#26FFFFFF" /> <!-- El "26" representa aproximadamente un 15% de opacidad -->
+
+    <!-- Esquinas redondeadas de la tarjeta -->
+    <corners android:radius="20dp" />
+
+    <!-- Borde sutil y brillante para simular el reflejo de la luz del cristal -->
+    <stroke
+        android:width="1.5dp"
+        android:color="#66FFFFFF" /> <!-- Blanco con mayor opacidad para que resalte el borde -->
+
+</shape>
