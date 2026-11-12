@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 
+
 class MainActivity : AppCompatActivity() {
 
 
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         btngoogle = findViewById(R.id.btngoogle)
         auth = FirebaseAuth.getInstance()
-        credentialManager = credentialManager.create(this)
+        credentialManager = CredentialManager.create(this)
 
         val tvcrearcuenta = findViewById<TextView>(R.id.tvcrearcuenta)
 
@@ -64,6 +65,10 @@ class MainActivity : AppCompatActivity() {
 
         BtnIngresar.setOnClickListener {
             iniciarSesion()
+        }
+
+        btngoogle.setOnClickListener {
+            iniciarSesionGoogle()
         }
     }
 
