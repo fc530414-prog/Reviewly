@@ -17,6 +17,8 @@ class detaActivity : AppCompatActivity() {
     private lateinit var tvAlbumDetalle: TextView
     private lateinit var btnFavorito: ImageButton
 
+    private lateinit var db: Databasehelper
+
     private var albmufavorito = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,8 @@ class detaActivity : AppCompatActivity() {
         tvAlbumDetalle = findViewById(R.id.tvAlbumDetalle)
         btnFavorito = findViewById(R.id.btnFavorito)
 
+        db = Databasehelper(this)
+
         mostrarInformacionAlbm()
     }
 
@@ -41,7 +45,8 @@ class detaActivity : AppCompatActivity() {
         val artistaAlbum = intent.getStringExtra("ARTISTA_ALBUM") ?: "Desconocido"
         val generoAlbum = intent.getStringExtra("GENERO_ALBUM") ?: "N/A"
         val cancionesAlbum = intent.getIntExtra("CANCIONES_ALBUM", 1)
-        val imagenAlbum = intent.getStringExtra("IMAGEN_ALBUM")
+        val fecha = intent.getStringExtra("FECHA_ALBUM") ?: "2026"
+        val imagenAlbum = intent.getStringExtra("IMAGEN_ALBUM") ?: ""
         val descripcionAlbum = intent.getStringExtra("DESCRIPCION_ALBUM") ?: ""
 
         tvNombreAlbumDetalle.text = nombreAlbum
@@ -60,16 +65,43 @@ class detaActivity : AppCompatActivity() {
             .error(android.R.drawable.ic_menu_report_image)
             .into(imgPortadaDetalle)
 
-        // Evento del botón guardado / favorito
-        btnFavorito.setOnClickListener {
-            albmufavorito = !albmufavorito
-
+        // Verificar si el elemento existe como favorito en la BD
+        if (idAlbum != -1L) {
+            albmufavorito = db.existealbumfavorito(idAlbum)
             if (albmufavorito) {
                 btnFavorito.setImageResource(R.drawable.ic_favorite_filled)
-                Toast.makeText(this, "Elemento $nombreAlbum agregado a favoritos", Toast.LENGTH_SHORT).show()
             } else {
                 btnFavorito.setImageResource(R.drawable.ic_favorite_border)
-                Toast.makeText(this, "Elemento $nombreAlbum eliminado de favoritos", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Evento del botón guardado / favorito conectado a la base de datos
+        btnFavorito.setOnClickListener {
+            if (albmufavorito) {
+                val eliminar = db.eliminaralbumfavorito(idAlbum)
+                if (eliminar) {
+                    albmufavorito = false
+                    btnFavorito.setImageResource(R.drawable.ic_favorite_border)
+                    Toast.makeText(this, "Elemento $nombreAlbum eliminado de favoritos", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                val guardado = db.guardarAlbumFavoritos(
+                    albumId = idAlbum,
+                    nombreAlbum = nombreAlbum,
+                    artista = artistaAlbum,
+                    genero = generoAlbum,
+                    canciones = cancionesAlbum,
+                    fecha = fecha,
+                    imagen = imagenAlbum
+                )
+
+                if (guardado) {
+                    albmufavorito = true
+                    btnFavorito.setImageResource(R.drawable.ic_favorite_filled)
+                    Toast.makeText(this, "Elemento $nombreAlbum agregado a favoritos", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al guardar $nombreAlbum en favoritos", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
