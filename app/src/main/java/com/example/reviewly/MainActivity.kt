@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                     request = solicitud
                 )
 
-                //llamar al metodo que permite procesar la credencial
+                //llamar al metodo que permite procesar la credencidal
                 procesarcredencial(resultado.credential)
 
 
