@@ -28,7 +28,6 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var contenedorLibros: LinearLayout
     private lateinit var contenedorSeries: LinearLayout
-    private lateinit var contenedorPeliculas: LinearLayout
     private lateinit var contenedorVideojuegos: LinearLayout
     private lateinit var contenedorMusica: LinearLayout
 
@@ -43,7 +42,6 @@ class HomeActivity : AppCompatActivity() {
 
         contenedorLibros = findViewById(R.id.contenedorLibros)
         contenedorSeries = findViewById(R.id.contenedorSeries)
-        contenedorPeliculas = findViewById(R.id.contenedorPeliculas)
         contenedorVideojuegos = findViewById(R.id.contenedorVideojuegos)
         contenedorMusica = findViewById(R.id.contenedorMusica)
 
@@ -53,7 +51,6 @@ class HomeActivity : AppCompatActivity() {
         // Consultas independientes para cada sección
         obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", null)
         obtenerAlbum("greys anatomy", contenedorSeries, "tvShow", null)
-        obtenerAlbum("Coco", contenedorPeliculas, "movie", null)
         obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", null)
         obtenerAlbum("YOASOBI", contenedorMusica, "music", "album")
     }
@@ -182,7 +179,6 @@ class HomeActivity : AppCompatActivity() {
         val blurIds = intArrayOf(
             R.id.blurViewLibros,
             R.id.blurViewSeries,
-            R.id.blurViewPeliculas,
             R.id.blurViewVideojuegos,
             R.id.blurViewMusica
         )

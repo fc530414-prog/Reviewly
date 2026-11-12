@@ -148,54 +148,6 @@
                 </LinearLayout>
             </eightbitlab.com.blurview.BlurView>
 
-            <!-- 3. BLUR VIEW: PELÍCULAS -->
-            <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewPeliculas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1A000000">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/efecto_cristal"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp">
-
-
-                    <TextView
-                        android:id="@+id/tvGeneroPeliculas"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:text="Películas"
-                        android:fontFamily="@font/permanent_marker"
-                        android:letterSpacing="0.10"
-                        android:textColor="@color/white"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:clipToPadding="false"
-                        android:scrollbars="none"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
-
-                        <LinearLayout
-                            android:id="@+id/contenedorPeliculas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal" />
-
-                    </HorizontalScrollView>
-                </LinearLayout>
-            </eightbitlab.com.blurview.BlurView>
 
 
             <!-- 4. BLUR VIEW: VIDEOJUEGOS -->
