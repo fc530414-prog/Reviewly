@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "448865179093",
+    "project_id": "appcriticas-c7877",
+    "storage_bucket": "appcriticas-c7877.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448865179093:android:8fc92163fd8893cc90995c",
+        "android_client_info": {
+          "package_name": "com.example.reviewly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448865179093-oohe6l8t6rc8ni1sptiqvfa6fs1uqs7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reviewly",
+            "certificate_hash": "7839c865ad14a0372cd1776004dfc7a39c02c400"
+          }
+        },
+        {
+          "client_id": "448865179093-cpdaroj4r5vkbcmvvshfckhdjek9bs5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxrFyiZG4KnjomuevXVhlV8YnxLEsu41k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448865179093-cpdaroj4r5vkbcmvvshfckhdjek9bs5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

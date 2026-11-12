@@ -114,6 +114,17 @@
                 android:textSize="15sp"
                 android:layout_marginTop="15sp"/>
 
+
+            <!-- Boton de inicio de sesino el cuadrito negro de google  -->
+            <ImageButton
+                android:id="@+id/btngoogle"
+                android:layout_width="34dp"
+                android:layout_height="35dp"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:background="@color/cardview_dark_background"
+                android:src="@drawable/logogogo"/>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
