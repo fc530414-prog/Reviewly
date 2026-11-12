@@ -2,19 +2,19 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <!-- Fondo de cristal oscuro y translúcido: mezcla un tono negro/morado muy sutil con brillo para dar efecto de profundidad y desenfoque visual -->
+    <!-- Fondo de cristal oscuro (ahumado): tono negro translúcido para resaltar el texto blanco -->
     <gradient
         android:angle="135"
-        android:startColor="#26FFFFFF"
-        android:centerColor="#0DFFFFFF"
-        android:endColor="#05FFFFFF" />
+        android:startColor="#4D000000"
+        android:centerColor="#26000000"
+        android:endColor="#1A000000" />
 
     <!-- Esquinas redondeadas -->
     <corners android:radius="24dp" />
 
     <!-- Borde de cristal brillante muy fino -->
     <stroke
-        android:width="1.2dp"
-        android:color="#59FFFFFF" />
+        android:width="1.5dp"
+        android:color="#40FFFFFF" />
 
 </shape>

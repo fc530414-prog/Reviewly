@@ -136,9 +136,9 @@ class HomeActivity : AppCompatActivity() {
             val fuenteShortstack = androidx.core.content.res.ResourcesCompat.getFont(this, R.font.shortstack_regular)
 
             tvNombreAlbum.typeface = fuentePermanent    // Título con Permanent Marker
-            tvNombreAlbum.setTextColor(android.graphics.Color.BLACK)
+            tvNombreAlbum.setTextColor(android.graphics.Color.WHITE)
             tvNombreArtista.typeface = fuenteShortstack
-            tvNombreArtista.setTextColor(android.graphics.Color.BLACK)
+            tvNombreArtista.setTextColor(android.graphics.Color.WHITE)
 
             // Cargar la portada con Glide
             Glide.with(this@HomeActivity)
@@ -188,7 +188,7 @@ class HomeActivity : AppCompatActivity() {
         )
 
         for (id in blurIds) {
-            val blurView = findViewById<BlurView>(id) as K? ?: continue
+            val blurView = findViewById<BlurView>(id) ?: continue
             blurView.setupWith(rootView, RenderScriptBlur(this))
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)

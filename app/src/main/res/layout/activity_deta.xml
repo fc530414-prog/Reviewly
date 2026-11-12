@@ -6,96 +6,117 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7D004E"
+    android:background="@drawable/fondo_morado"
     tools:context=".detaActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp">
 
-        <FrameLayout
-            android:id="@+id/contenedorPortadas"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <!-- Imagen de la portada del álbum o elemento -->
-            <ImageView
-                android:id="@+id/imgPortadaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"/>
+            <FrameLayout
+                android:id="@+id/contenedorPortadas"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Incluir degradado -->
+                <!-- Imagen de la portada del álbum o elemento -->
+                <ImageView
+                    android:id="@+id/imgPortadaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
 
-            <!-- Botón de guardado / favorito -->
-            <ImageButton
-                android:id="@+id/btnFavorito"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/bg_boton_circular"
-                android:padding="12dp"
-                android:src="@drawable/ic_favorite_border" />
+                <!-- Incluir degradado -->
 
-        </FrameLayout>
+                <!-- Botón de guardado / favorito -->
+                <ImageButton
+                    android:id="@+id/btnFavorito"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_boton_circular"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_favorite_border" />
 
-        <!-- Datos del elemento para mostrar -->
-        <TextView
-            android:id="@+id/tvNombreAlbumDetalle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="2"
-            android:text="Nombre Album"
-            android:textColor="@color/white"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/contenedorPortadas"/>
+            </FrameLayout>
 
-        <TextView
-            android:id="@+id/tvArtistaAlbumDetalle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="24dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="Nombre del artista"
-            android:textColor="#E0E0E0"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNombreAlbumDetalle" />
+            <!-- Tarjeta de cristal para la información del detalle -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewDetalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                app:blurOverlayColor="#1A000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contenedorPortadas">
 
-        <TextView
-            android:id="@+id/tvAlbumDetalle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:text="Detalles"
-            android:textColor="#E0E0E0"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvArtistaAlbumDetalle" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/efecto_cristal"
+                    android:padding="20dp"
+                    android:gravity="center">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tvNombreAlbumDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="Nombre Album"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvArtistaAlbumDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Nombre del artista"
+                        android:fontFamily="@font/permanent_marker"
+                        android:letterSpacing="0.10"
+                        android:textColor="#E0E0E0"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvAlbumDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Detalles"
+                        android:fontFamily="@font/shortstack_regular"
+                        android:textColor="#E0E0E0"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </eightbitlab.com.blurview.BlurView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </FrameLayout>

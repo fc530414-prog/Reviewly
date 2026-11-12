@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1AFFFFFF">
+                app:blurOverlayColor="#1A000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                         android:text="Libros"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1AFFFFFF">
+                app:blurOverlayColor="#1A000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,7 +125,7 @@
                         android:text="Series"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1AFFFFFF">
+                app:blurOverlayColor="#1A000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,7 +174,7 @@
                         android:text="Películas"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1AFFFFFF">
+                app:blurOverlayColor="#1A000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -223,7 +223,7 @@
                         android:text="Videojuegos"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -253,7 +253,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:blurOverlayColor="#1AFFFFFF">
+                app:blurOverlayColor="#1A000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,7 +271,7 @@
                         android:text="Música"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 

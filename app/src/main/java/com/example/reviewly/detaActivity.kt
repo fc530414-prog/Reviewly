@@ -5,9 +5,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderScriptBlur
 
 class detaActivity : AppCompatActivity() {
 
@@ -33,6 +37,8 @@ class detaActivity : AppCompatActivity() {
         btnFavorito = findViewById(R.id.btnFavorito)
 
         db = Databasehelper(this)
+
+        configurarEfectoCristal()
 
         mostrarInformacionAlbm()
     }
@@ -104,5 +110,18 @@ class detaActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun configurarEfectoCristal() {
+        val blurView = findViewById<BlurView>(R.id.blurViewDetalle) ?: return
+        val radius = 16f
+        val rootView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        val windowBackground = window.decorView.background
+
+        blurView.setupWith(rootView, RenderScriptBlur(this))
+            .setFrameClearDrawable(windowBackground)
+            .setBlurRadius(radius)
+        blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
+        blurView.clipToOutline = true
     }
 }
