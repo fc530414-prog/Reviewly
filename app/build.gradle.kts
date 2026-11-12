@@ -44,6 +44,9 @@ dependencies {
 
     // Glide para cargar imágenes
     implementation("com.github.bumptech.glide:glide:5.0.9")
+    // BlurView para efecto cristal
+    implementation("com.github.Dimezis:BlurView:version-2.0.3")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -17,6 +17,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+import android.view.ViewGroup
+import android.view.ViewOutlineProvider
+import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderScriptBlur
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var tvresultado: TextView
@@ -41,6 +46,9 @@ class HomeActivity : AppCompatActivity() {
         contenedorPeliculas = findViewById(R.id.contenedorPeliculas)
         contenedorVideojuegos = findViewById(R.id.contenedorVideojuegos)
         contenedorMusica = findViewById(R.id.contenedorMusica)
+
+        // Configurar el efecto de cristal (BlurView) para todas las tarjetas
+        configurarEfectoCristal()
 
         // Consultas independientes para cada sección
         obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", null)
@@ -123,6 +131,15 @@ class HomeActivity : AppCompatActivity() {
             tvNombreAlbum.text = album.obtenerTitulo()
             tvNombreArtista.text = album.obtenerCreador()
 
+            // --- APLICAR TIPOGRAFÍA SHORTSTACK PARA LOS DATOS DE LA API ---
+            val fuentePermanent = androidx.core.content.res.ResourcesCompat.getFont(this, R.font.permanent_marker)
+            val fuenteShortstack = androidx.core.content.res.ResourcesCompat.getFont(this, R.font.shortstack_regular)
+
+            tvNombreAlbum.typeface = fuentePermanent    // Título con Permanent Marker
+            tvNombreAlbum.setTextColor(android.graphics.Color.BLACK)
+            tvNombreArtista.typeface = fuenteShortstack
+            tvNombreArtista.setTextColor(android.graphics.Color.BLACK)
+
             // Cargar la portada con Glide
             Glide.with(this@HomeActivity)
                 .load(album.obtenerImagenGrande())
@@ -155,5 +172,28 @@ class HomeActivity : AppCompatActivity() {
             mensaje,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    private fun configurarEfectoCristal() {
+        val radius = 6f
+        val rootView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        val windowBackground = window.decorView.background
+
+        val blurIds = intArrayOf(
+            R.id.blurViewLibros,
+            R.id.blurViewSeries,
+            R.id.blurViewPeliculas,
+            R.id.blurViewVideojuegos,
+            R.id.blurViewMusica
+        )
+
+        for (id in blurIds) {
+            val blurView = findViewById<BlurView>(id) ?: continue
+            blurView.setupWith(rootView, RenderScriptBlur(this))
+                .setFrameClearDrawable(windowBackground)
+                .setBlurRadius(radius)
+            blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
+            blurView.clipToOutline = true
+        }
     }
 }

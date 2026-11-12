@@ -9,7 +9,9 @@
     android:background="#7D004E"
     tools:context=".HomeActivity">
 
+    <!-- Fondo de ondas moradas -->
     <ImageView
+        android:id="@+id/backgroundView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/fondo_morado"
@@ -50,15 +52,14 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
-            <!-- 1. TARJETA GRANDE DE CRISTAL: LIBROS -->
-            <androidx.cardview.widget.CardView
+            <!-- 1. BLUR VIEW: LIBROS -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewLibros"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:blurOverlayColor="#1AFFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,7 +77,7 @@
                         android:text="Libros"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -97,17 +98,16 @@
 
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
-            <!-- 2. TARJETA GRANDE DE CRISTAL: SERIES -->
-            <androidx.cardview.widget.CardView
+            <!-- 2. BLUR VIEW: SERIES -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewSeries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:blurOverlayColor="#1AFFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,7 +125,7 @@
                         android:text="Series"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -146,17 +146,16 @@
 
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
-            <!-- 3. TARJETA GRANDE DE CRISTAL: PELÍCULAS -->
-            <androidx.cardview.widget.CardView
+            <!-- 3. BLUR VIEW: PELÍCULAS -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewPeliculas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:blurOverlayColor="#1AFFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,6 +165,7 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp">
 
+
                     <TextView
                         android:id="@+id/tvGeneroPeliculas"
                         android:layout_width="match_parent"
@@ -174,7 +174,7 @@
                         android:text="Películas"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -195,17 +195,17 @@
 
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
-            <!-- 4. TARJETA GRANDE DE CRISTAL: VIDEOJUEGOS -->
-            <androidx.cardview.widget.CardView
+
+            <!-- 4. BLUR VIEW: VIDEOJUEGOS -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewVideojuegos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:blurOverlayColor="#1AFFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -223,7 +223,7 @@
                         android:text="Videojuegos"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -244,17 +244,16 @@
 
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
-            <!-- 5. TARJETA GRANDE DE CRISTAL: MÚSICA -->
-            <androidx.cardview.widget.CardView
+            <!-- 5. BLUR VIEW: MÚSICA -->
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewMusica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:blurOverlayColor="#1AFFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -272,7 +271,7 @@
                         android:text="Música"
                         android:fontFamily="@font/permanent_marker"
                         android:letterSpacing="0.10"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -293,7 +292,7 @@
 
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
         </LinearLayout>
 
