@@ -188,7 +188,7 @@ class HomeActivity : AppCompatActivity() {
         )
 
         for (id in blurIds) {
-            val blurView = findViewById<BlurView>(id) ?: continue
+            val blurView = findViewById<BlurView>(id) as K? ?: continue
             blurView.setupWith(rootView, RenderScriptBlur(this))
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
