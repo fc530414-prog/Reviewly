@@ -41,6 +41,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var credentialManager: CredentialManager
     private lateinit var  btngoogle : ImageButton
 
+    private lateinit var tvCrearCuenta : TextView
+
+
+    override fun onStart() {
+        super.onStart()
+        val sharedPreferences = getSharedPreferences("SesionPrefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
+
+        if (isLoggedIn || auth.currentUser != null) {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +70,9 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         credentialManager = CredentialManager.create(this)
 
-        val tvcrearcuenta = findViewById<TextView>(R.id.tvcrearcuenta)
+        tvCrearCuenta = findViewById(R.id.tvcrearcuenta)
 
-        tvcrearcuenta.setOnClickListener {
+        tvCrearCuenta.setOnClickListener {
             val intent = Intent(this, Activity_Registro::class.java)
             startActivity(intent)
         }
@@ -89,6 +103,9 @@ class MainActivity : AppCompatActivity() {
         //validar si el inicisio de sesion fue correcto
 
         if(resultado){
+            val sharedPreferences = getSharedPreferences("SesionPrefs", MODE_PRIVATE)
+            sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
+
             //el resutlado es verdadero
             val intent = Intent(this, HomeActivity::class.java)
 
@@ -102,7 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // 3MÉTODO PARA AUTENTICAR EN FIREBSAE
+    // MÉTODO PARA AUTENTICAR EN FIREBSAE
     private fun auntefire(idToken: String){
 
         val credencialFirebase = GoogleAuthProvider.getCredential(idToken, null)
@@ -113,6 +130,8 @@ class MainActivity : AppCompatActivity() {
 
             //validra si el iniaior de sesion es correto
             if(inicio.isSuccessful){
+                val sharedPreferences = getSharedPreferences("SesionPrefs", MODE_PRIVATE)
+                sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
 
                 //crear variable para guardar al usuairoa ctual
                 val usuario = auth.currentUser
@@ -187,7 +206,7 @@ class MainActivity : AppCompatActivity() {
 
             } catch (e: GetCredentialException){
                 Toast.makeText(this@MainActivity, "Error al iniciar", Toast.LENGTH_SHORT).show()
-
+                tvCrearCuenta.text = e.toString()
             }
 
         }

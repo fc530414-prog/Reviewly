@@ -172,4 +172,28 @@ class Databasehelper(context: Context) : SQLiteOpenHelper(
 
         return existe
     }
+
+    // METODO PARA OBTENER TODOS LOS FAVORITOS
+    fun obtenerTodosFavoritos(): List<Map<String, Any>> {
+        val lista = mutableListOf<Map<String, Any>>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_FAVORITOS", null)
+        if (cursor.moveToFirst()) {
+            do {
+                val item = mapOf(
+                    "album_id" to cursor.getLong(cursor.getColumnIndexOrThrow(COL_ALBUM_ID)),
+                    "nombre_album" to cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE_ALUBM)),
+                    "artista" to cursor.getString(cursor.getColumnIndexOrThrow(COL_ARTISTA)),
+                    "genero" to cursor.getString(cursor.getColumnIndexOrThrow(COL_GENERO)),
+                    "num_canciones" to cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANCIONES)),
+                    "fecha" to cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA)),
+                    "imagen" to cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGEN))
+                )
+                lista.add(item)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return lista
+    }
 }

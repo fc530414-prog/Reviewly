@@ -21,6 +21,8 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
 
@@ -30,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var contenedorSeries: LinearLayout
     private lateinit var contenedorVideojuegos: LinearLayout
     private lateinit var contenedorMusica: LinearLayout
+    private lateinit var botonnav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,8 @@ class HomeActivity : AppCompatActivity() {
 
         // Referencias a las vistas del XML
         tvresultado = findViewById(R.id.tvresultado)
+        botonnav = findViewById(R.id.bottomNavigation)
+        menuNavegacion()
 
         contenedorLibros = findViewById(R.id.contenedorLibros)
         contenedorSeries = findViewById(R.id.contenedorSeries)
@@ -191,5 +196,42 @@ class HomeActivity : AppCompatActivity() {
             blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
             blurView.clipToOutline = true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        botonnav.selectedItemId = R.id.nav_inicio
+    }
+
+    // Metodo para el funcionamiento del menu
+    private fun menuNavegacion() {
+        botonnav.selectedItemId = R.id.nav_inicio
+
+        botonnav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_inicio -> true
+                R.id.nav_favoritos -> {
+                    startActivity(Intent(this, Favact::class.java))
+                    true
+                }
+                R.id.nav_salir -> {
+                    cerrarSesion()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun cerrarSesion() {
+        FirebaseAuth.getInstance().signOut()
+        val sharedPreferences = getSharedPreferences("SesionPrefs", MODE_PRIVATE)
+        sharedPreferences.edit().putBoolean("is_logged_in", false).apply()
+
+        Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }
