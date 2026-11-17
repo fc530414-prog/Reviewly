@@ -39,6 +39,9 @@
         <activity
             android:name=".Favact"
             android:exported="false" />
+        <activity
+            android:name=".SensorActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

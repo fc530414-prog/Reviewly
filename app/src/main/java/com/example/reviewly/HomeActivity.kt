@@ -54,8 +54,8 @@ class HomeActivity : AppCompatActivity() {
         configurarEfectoCristal()
 
         // Consultas independientes para cada sección
-        obtenerAlbum("Habitos Atomicos", contenedorLibros, "ebook", null)
-        obtenerAlbum("greys anatomy", contenedorSeries, "tvShow", null)
+        obtenerAlbum("caraval", contenedorLibros, "ebook", null)
+        obtenerAlbum("Disney", contenedorSeries, "tvShow", null)
         obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", null)
         obtenerAlbum("YOASOBI", contenedorMusica, "music", "album")
     }
@@ -212,6 +212,11 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_inicio -> true
                 R.id.nav_favoritos -> {
                     startActivity(Intent(this, Favact::class.java))
+                    true
+                }
+                R.id.nav_sensores -> {
+                    startActivity(Intent(this, SensorActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_salir -> {

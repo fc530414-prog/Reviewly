@@ -118,6 +118,11 @@ class Favact : AppCompatActivity() {
                     true
                 }
                 R.id.nav_favoritos -> true
+                R.id.nav_sensores -> {
+                    startActivity(Intent(this, SensorActivity::class.java))
+                    finish()
+                    true
+                }
                 R.id.nav_salir -> {
                     cerrarSesion()
                     true
