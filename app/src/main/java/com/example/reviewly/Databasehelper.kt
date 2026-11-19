@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.reviewly.model.albumfav
 
 // crear clase dabatabehelper que hereda de SQLiteOpenHelper
 
@@ -173,23 +174,36 @@ class Databasehelper(context: Context) : SQLiteOpenHelper(
         return existe
     }
 
-    // METODO PARA OBTENER TODOS LOS FAVORITOS
-    fun obtenerTodosFavoritos(): List<Map<String, Any>> {
-        val lista = mutableListOf<Map<String, Any>>()
+    //metodo para la consulta de albumes favoritos
+    fun obteneralbumesfav(): List<albumfav> {
+        val lista = mutableListOf<albumfav>()
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT * FROM $TABLE_FAVORITOS", null)
+
         if (cursor.moveToFirst()) {
+
+            //ciclo que permite recorrer toda la consulta a la tabla
             do {
-                val item = mapOf(
-                    "album_id" to cursor.getLong(cursor.getColumnIndexOrThrow(COL_ALBUM_ID)),
-                    "nombre_album" to cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE_ALUBM)),
-                    "artista" to cursor.getString(cursor.getColumnIndexOrThrow(COL_ARTISTA)),
-                    "genero" to cursor.getString(cursor.getColumnIndexOrThrow(COL_GENERO)),
-                    "num_canciones" to cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANCIONES)),
-                    "fecha" to cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA)),
-                    "imagen" to cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGEN))
+                val id = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID_FAVORITO))
+                val albumid = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ALBUM_ID))
+                val nombreAlbum = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE_ALUBM))
+                val artista = cursor.getString(cursor.getColumnIndexOrThrow(COL_ARTISTA))
+                val genero = cursor.getString(cursor.getColumnIndexOrThrow(COL_GENERO))
+                val canciones = cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANCIONES))
+                val fecha = cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA))
+                val imagen = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGEN))
+
+                val album = albumfav(
+                    id = id,
+                    albumid = albumid,
+                    nombreAlbum = nombreAlbum,
+                    artista = artista ?: "",
+                    genero = genero ?: "",
+                    canciones = canciones,
+                    fecha = fecha ?: "",
+                    imagen = imagen ?: ""
                 )
-                lista.add(item)
+                lista.add(album)
             } while (cursor.moveToNext())
         }
         cursor.close()

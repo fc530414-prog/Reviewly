@@ -45,13 +45,13 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         menuNavegacion()
     }
 
-    override fun onResume() {
+    /*override fun onResume() {
         super.onResume()
         botonnav.selectedItemId = R.id.nav_sensores
         lightSensor?.let {
             sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
         }
-    }
+    }*/
 
     override fun onPause() {
         super.onPause()
@@ -80,7 +80,7 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun menuNavegacion() {
-        botonnav.selectedItemId = R.id.nav_sensores
+       /* botonnav.selectedItemId = R.id.nav_sensores*/
 
         botonnav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -94,11 +94,11 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
                     finish()
                     true
                 }
-                R.id.nav_sensores -> true
+               /* R.id.nav_sensores -> true
                 R.id.nav_salir -> {
                     cerrarSesion()
                     true
-                }
+                }*/
                 else -> false
             }
         }

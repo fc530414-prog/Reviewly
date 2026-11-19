@@ -3,110 +3,45 @@ package com.example.reviewly
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.GridLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.reviewly.model.albumfav
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class Favact : AppCompatActivity() {
 
-    private lateinit var contenedorFavoritos: LinearLayout
     private lateinit var botonnav: BottomNavigationView
-    private lateinit var dbHelper: Databasehelper
+    private lateinit var gridfavoritos: GridLayout
+    private lateinit var tvestadofavorito: TextView
+    private lateinit var dbhelper: Databasehelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_favact)
 
-        contenedorFavoritos = findViewById(R.id.contenedorFavoritos)
         botonnav = findViewById(R.id.bottomNavigation)
-        dbHelper = Databasehelper(this)
+        gridfavoritos = findViewById(R.id.gridfavoritos)
+        tvestadofavorito = findViewById(R.id.tvEstadoFavoritos)
+        dbhelper = Databasehelper(this)
 
         menuNavegacion()
-        cargarFavoritos()
+        consultarfavorito()
     }
 
     override fun onResume() {
         super.onResume()
         botonnav.selectedItemId = R.id.nav_favoritos
-        cargarFavoritos()
+        consultarfavorito()
     }
 
-    private fun cargarFavoritos() {
-        contenedorFavoritos.removeAllViews()
-        val listaFavoritos = dbHelper.obtenerTodosFavoritos()
-
-        if (listaFavoritos.isEmpty()) {
-            val tvVacio = TextView(this).apply {
-                text = "No tienes elementos en favoritos"
-                setTextColor(android.graphics.Color.WHITE)
-                textSize = 18f
-                setPadding(16, 32, 16, 16)
-                typeface = androidx.core.content.res.ResourcesCompat.getFont(context, R.font.shortstack_regular)
-            }
-            contenedorFavoritos.addView(tvVacio)
-            return
-        }
-
-        for (fav in listaFavoritos) {
-            val albumId = fav["album_id"] as Long
-            val nombreAlbum = fav["nombre_album"] as String
-            val artista = fav["artista"] as String
-            val genero = fav["genero"] as String
-            val canciones = fav["num_canciones"] as Int
-            val fecha = fav["fecha"] as String
-            val imagen = fav["imagen"] as String
-
-            val vistaAlbum = layoutInflater.inflate(
-                R.layout.item_album,
-                contenedorFavoritos,
-                false
-            )
-
-            val imgPortada = vistaAlbum.findViewById<ImageView>(R.id.imgPortadaAlbum)
-            val tvNombreAlbum = vistaAlbum.findViewById<TextView>(R.id.tvNombreAlbum)
-            val tvNombreArtista = vistaAlbum.findViewById<TextView>(R.id.tvNombreArtista)
-
-            tvNombreAlbum.text = nombreAlbum
-            tvNombreArtista.text = artista
-
-            val fuentePermanent = androidx.core.content.res.ResourcesCompat.getFont(this, R.font.permanent_marker)
-            val fuenteShortstack = androidx.core.content.res.ResourcesCompat.getFont(this, R.font.shortstack_regular)
-
-            tvNombreAlbum.typeface = fuentePermanent
-            tvNombreAlbum.setTextColor(android.graphics.Color.WHITE)
-            tvNombreArtista.typeface = fuenteShortstack
-            tvNombreArtista.setTextColor(android.graphics.Color.WHITE)
-
-            Glide.with(this)
-                .load(imagen)
-                .placeholder(android.R.drawable.ic_menu_gallery)
-                .error(android.R.drawable.ic_menu_report_image)
-                .into(imgPortada)
-
-            vistaAlbum.setOnClickListener {
-                val intent = Intent(this, detaActivity::class.java).apply {
-                    putExtra("ID_ALBUM", albumId)
-                    putExtra("NOMBRE_ALBUM", nombreAlbum)
-                    putExtra("ARTISTA_ALBUM", artista)
-                    putExtra("GENERO_ALBUM", genero)
-                    putExtra("CANCIONES_ALBUM", canciones)
-                    putExtra("FECHA_ALBUM", fecha)
-                    putExtra("IMAGEN_ALBUM", imagen)
-                }
-                startActivity(intent)
-            }
-
-            contenedorFavoritos.addView(vistaAlbum)
-        }
-    }
-
+    // Metodo para el funcionamiento del menu
     private fun menuNavegacion() {
         botonnav.selectedItemId = R.id.nav_favoritos
 
@@ -118,17 +53,78 @@ class Favact : AppCompatActivity() {
                     true
                 }
                 R.id.nav_favoritos -> true
-                R.id.nav_sensores -> {
+               /* R.id.nav_sensores -> {
                     startActivity(Intent(this, SensorActivity::class.java))
                     finish()
                     true
-                }
+                }*/
                 R.id.nav_salir -> {
                     cerrarSesion()
                     true
                 }
                 else -> false
             }
+        }
+    }
+
+    // metodo para consultar la informacion y mostrarla
+    private fun mostraralbunesfavoritos(favoritos: List<albumfav>) {
+        gridfavoritos.removeAllViews()
+
+        if (favoritos.isEmpty()) {
+            tvestadofavorito.text = "No hay álbumes favoritos"
+            tvestadofavorito.visibility = View.VISIBLE
+        } else {
+            tvestadofavorito.visibility = View.GONE
+        }
+
+        // ciclo para recorrer la consulta de la bd
+        for (album in favoritos) {
+            val vistaalbum = layoutInflater.inflate(
+                R.layout.item_favorito,
+                gridfavoritos,
+                false
+            )
+
+            val imgalbun = vistaalbum.findViewById<ImageView>(R.id.imgfavorito)
+
+            Glide.with(this)
+                .load(album.imagen)
+                .centerCrop()
+                .into(imgalbun)
+
+            // evento para que el usuario acceda a los albumes individuales
+            vistaalbum.setOnClickListener {
+                val intent = Intent(this, detaActivity::class.java).apply {
+                    putExtra("ID_ALBUM", album.albumid)
+                    putExtra("NOMBRE_ALBUM", album.nombreAlbum)
+                    putExtra("ARTISTA_ALBUM", album.artista)
+                    putExtra("GENERO_ALBUM", album.genero)
+                    putExtra("CANCIONES_ALBUM", album.canciones)
+                    putExtra("FECHA_ALBUM", album.fecha)
+                    putExtra("IMAGEN_ALBUM", album.imagen)
+                }
+                startActivity(intent)
+            }
+
+            gridfavoritos.addView(vistaalbum)
+        }
+    }
+
+    // metodo para la consulta
+    private fun consultarfavorito() {
+        val favoritos = dbhelper.obteneralbumesfav()
+
+        // mostrar los albumes y sus imagenes en el gridlayout
+        gridfavoritos.removeAllViews()
+
+        // valida que los elementos tengan un registro en la bd
+        if (favoritos.isEmpty()) {
+            tvestadofavorito.visibility = View.VISIBLE
+            tvestadofavorito.text = "No tienes ningún álbum en favoritos :V"
+        } else {
+            tvestadofavorito.visibility = View.GONE
+            mostraralbunesfavoritos(favoritos)
         }
     }
 
