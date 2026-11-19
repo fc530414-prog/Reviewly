@@ -1,5 +1,8 @@
 package com.example.reviewly
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -9,11 +12,20 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
 
 class detaActivity : AppCompatActivity() {
+
+    companion object{
+        private const val CANAL_ID = "canal_general"
+        private const val NOTIFICACION_ID = 1
+        private const val CODIGO_PERMISO = 100
+    }
 
     private lateinit var imgPortadaDetalle: ImageView
     private lateinit var tvNombreAlbumDetalle: TextView
@@ -124,4 +136,58 @@ class detaActivity : AppCompatActivity() {
         blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
         blurView.clipToOutline = true
     }
+
+
+    //metdodo para crear canal de notificaciones
+
+    private fun crearCanalNoti(){
+
+        //evaluar el permiso del usuario para manjear notifiaciones
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            val canal = NotificationChannel(
+                CANAL_ID,
+                "Notificaciones generales",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+
+            canal.description = "Canal de envio de ntifaciones sobre la BD"
+
+            //indicar el uso de notificaciones
+
+            val adminNotificaciones = getSystemService(NotificationManager::class.java)
+
+            adminNotificaciones.createNotificationChannel(canal)
+
+        }
+
+
+    }
+
+    //metodo para mostrar la notifiacion
+    private fun mostrarnoti(){
+        //verificar los permisos seleccionados por el usuario
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && 
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+            == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            // volver a pedir permiso al usuaio
+
+            ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),CODIGO_PERMISO)
+            Toast.makeText(this, "Autoriza el envio de notificaciones", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val notificacion = NotificationCompat.Builder(this, CANAL_ID)
+
+            .setContentTitle(" 67 ")
+            .setContentText("Buena eleccion , se a guardado ")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+            .build()
+
+    }
+
+
+
+
 }
