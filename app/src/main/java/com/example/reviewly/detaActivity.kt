@@ -26,6 +26,7 @@ class detaActivity : AppCompatActivity() {
     companion object{
         private const val CANAL_ID = "canal_general"
         private const val NOTIFICACION_ID = 1
+        private const val NOTIFICACION_ELIMINADO_ID = 2
         private const val CODIGO_PERMISO = 100
     }
 
@@ -106,6 +107,7 @@ class detaActivity : AppCompatActivity() {
                     albmufavorito = false
                     btnFavorito.setImageResource(R.drawable.ic_favorite_border)
                     Toast.makeText(this, "Elemento $nombreAlbum eliminado de favoritos", Toast.LENGTH_SHORT).show()
+                    mostrarnotiEliminado()
                 }
             } else {
                 val guardado = db.guardarAlbumFavoritos(
@@ -190,6 +192,39 @@ class detaActivity : AppCompatActivity() {
                 .from(this)
                 .notify(
                     NOTIFICACION_ID,
+                    notificacion
+                )
+        }
+    }
+
+    // Método para mostrar la notificación al eliminar de favoritos
+    private fun mostrarnotiEliminado() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+            != PackageManager.PERMISSION_GRANTED) {
+            
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                CODIGO_PERMISO
+            )
+            Toast.makeText(this, "Autoriza el envío de notificaciones", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val notificacion = NotificationCompat.Builder(this, CANAL_ID)
+            .setSmallIcon(R.drawable.ic_favorite_border)
+            .setContentTitle("Eliminado de Favoritos")
+            .setContentText("que mal que no te gusto :V")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+            .build()
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            NotificationManagerCompat
+                .from(this)
+                .notify(
+                    NOTIFICACION_ELIMINADO_ID,
                     notificacion
                 )
         }
