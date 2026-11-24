@@ -5,6 +5,8 @@
     <!-- Colocar persmisos de la aplicacion -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -41,6 +43,9 @@
             android:exported="false" />
         <activity
             android:name=".SensorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilActivity"
             android:exported="false" />
     </application>
 
