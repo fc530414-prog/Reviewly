@@ -1,5 +1,5 @@
 package com.example.reviewly.model
-
+//paramteros
 data class albumfav(
     val id: Long,
     val albumid: Long,
