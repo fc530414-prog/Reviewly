@@ -1,6 +1,7 @@
 package com.example.reviewly
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.reviewly.model.albumfav
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import java.net.URI
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -24,6 +26,14 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var tvEstadoFavoritosPerfil: TextView
     private lateinit var botonnav: BottomNavigationView
     private lateinit var dbhelper: Databasehelper
+
+    private lateinit var tvLabelNombre : TextView
+
+    private lateinit var imgPerfilDefault : ImageView
+
+    private lateinit var auth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +46,20 @@ class PerfilActivity : AppCompatActivity() {
         tvEstadoFavoritosPerfil = findViewById(R.id.tvEstadoFavoritosPerfil)
         botonnav = findViewById(R.id.bottomNavigation)
         dbhelper = Databasehelper(this)
+        auth = FirebaseAuth.getInstance()
+        imgPerfilDefault = findViewById(R.id.imgPerfilDefault)
+        tvLabelNombre = findViewById(R.id.tvLabelNombre)
+
+        val usuario = auth.currentUser
+        val imagen : Uri? = usuario?.photoUrl
+
+        Glide.with(this)
+            .load(imagen)
+            .centerCrop()
+            .into(imgPerfilDefault)
+
+        tvLabelNombre.text = usuario?.displayName
+
 
         cargarNombreUsuario()
 
@@ -160,4 +184,6 @@ class PerfilActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }

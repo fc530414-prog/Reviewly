@@ -54,10 +54,10 @@ class HomeActivity : AppCompatActivity() {
         configurarEfectoCristal()
 
         // Consultas independientes para cada sección
-        obtenerAlbum("caraval", contenedorLibros, "ebook", null)
-        obtenerAlbum("Disney", contenedorSeries, "tvShow", null)
-        obtenerAlbum("Guardian Tales", contenedorVideojuegos, "software", null)
-        obtenerAlbum("YOASOBI", contenedorMusica, "music", "album")
+        obtenerAlbum("all", contenedorLibros, "ebook", null)
+        obtenerAlbum("all", contenedorSeries, "tvShow", null)
+        obtenerAlbum("all", contenedorVideojuegos, "software", null)
+        obtenerAlbum("all", contenedorMusica, "music", "album")
     }
 
     // Consulta la API de iTunes y recibe los resultados

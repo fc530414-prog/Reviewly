@@ -50,7 +50,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/permanent_marker" />
 
-            <!-- Card de perfil -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +60,8 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/efecto_cristal">
 
-                <!-- Imagen por defecto con símbolo de Android -->
+
+                <!-- imagen perfil  -->
                 <ImageView
                     android:id="@+id/imgPerfilDefault"
                     android:layout_width="90dp"
