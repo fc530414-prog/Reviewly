@@ -87,29 +87,9 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center">
 
-                    <EditText
-                        android:id="@+id/etNombreUsuario"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:hint="Nombre de usuario"
-                        android:textColorHint="#CCCCCC"
-                        android:textColor="#FFFFFF"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:background="@drawable/fondo_edit_text"
-                        android:inputType="textPersonName"
-                        android:fontFamily="@font/shortstack_regular" />
 
-                    <Button
-                        android:id="@+id/btnGuardarNombre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:text="Guardar"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/boton"
-                        app:backgroundTint="@null" />
+
+
 
                 </LinearLayout>
 

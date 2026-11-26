@@ -40,8 +40,7 @@ class PerfilActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_perfil)
 
-        etNombreUsuario = findViewById(R.id.etNombreUsuario)
-        btnGuardarNombre = findViewById(R.id.btnGuardarNombre)
+
         gridfavoritosPerfil = findViewById(R.id.gridfavoritosPerfil)
         tvEstadoFavoritosPerfil = findViewById(R.id.tvEstadoFavoritosPerfil)
         botonnav = findViewById(R.id.bottomNavigation)
